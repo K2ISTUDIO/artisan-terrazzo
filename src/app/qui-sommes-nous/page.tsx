@@ -360,8 +360,8 @@ export default function QuiSommesNousPage() {
             </div>
             <p className="mt-10 text-sm text-ink/60 text-center max-w-xl mx-auto leading-relaxed">
               Notre savoir-faire nous a notamment amenés à intervenir sur des projets liés à des acteurs tels que
-              Hermès, Vinci, LVMH, Eiffage, Fayat ou les Galeries Lafayette. Chaque chantier reste avant tout une
-              relation de confiance.
+              Hermès, Vinci, LVMH, Google ou l&rsquo;architecte d&rsquo;intérieur Pierre Yovanovitch. Chaque chantier
+              reste avant tout une relation de confiance.
             </p>
           </div>
         </div>

@@ -26,4 +26,7 @@ export const clientReferences: ClientReference[] = [
   { name: "Eiffage Construction", logo: "/images/logos/eiffage.png" },
   { name: "Fayat", logo: "/images/logos/fayat.png" },
   { name: "Galeries Lafayette", logo: "/images/logos/galeries-lafayette.png" },
+  { name: "Deskeo", logo: "/images/logos/deskeo.png" },
+  { name: "Google", logo: "/images/logos/google.png" },
+  { name: "Pierre Yovanovitch", logo: "/images/logos/pierre-yovanovitch.png" },
 ];
