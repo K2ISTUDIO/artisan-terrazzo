@@ -2,6 +2,7 @@ export type NavLink = { label: string; href: string };
 export type NavGroup = { label: string; href?: string; children?: NavLink[] };
 
 export const mainNav: NavGroup[] = [
+  { label: "Qui sommes-nous", href: "/qui-sommes-nous" },
   {
     label: "Le terrazzo",
     href: "/terrazzo",
@@ -81,6 +82,7 @@ export const footerNav: NavGroup[] = [
   {
     label: "L'agence",
     children: [
+      { label: "Qui sommes-nous", href: "/qui-sommes-nous" },
       { label: "Réalisations", href: "/realisations" },
       { label: "Architectes & professionnels", href: "/architectes" },
       { label: "Conseils & guides", href: "/conseils" },

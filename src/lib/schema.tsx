@@ -23,6 +23,20 @@ export function localBusinessSchema() {
   };
 }
 
+export function organizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    slogan: siteConfig.tagline,
+    description:
+      "Entreprise familiale spécialisée dans le terrazzo et le granito : création sur mesure, rénovation et restauration, à Paris, en Île-de-France et partout en France pour les projets d'envergure.",
+    url: siteConfig.domain,
+    logo: `${siteConfig.domain}/images/logo/logo-couleur-texte.png`,
+    email: siteConfig.email,
+  };
+}
+
 export function professionalServiceSchema(input: { name: string; description: string; url: string }) {
   return {
     "@context": "https://schema.org",

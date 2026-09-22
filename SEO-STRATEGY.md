@@ -27,6 +27,7 @@ artisan terrazzo + [département/ville] pour les 8 zones prioritaires (75, 92, 9
 
 | Page | Rôle | Mots-clés principaux |
 |---|---|---|
+| `/qui-sommes-nous` | Pilier confiance | entreprise familiale terrazzo, artisan terrazzo, savoir-faire terrazzo |
 | `/terrazzo` | Pilier matière | terrazzo, qu'est-ce que le terrazzo |
 | `/terrazzo-coule` | Pilier technique | terrazzo coulé sur place |
 | `/granito` | Pilier matière (FR) | granito, terrazzo vs granito |

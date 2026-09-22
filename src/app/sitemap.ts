@@ -5,6 +5,7 @@ import { articles } from "@/data/articles";
 
 const staticRoutes = [
   { path: "/", priority: 1, changeFrequency: "weekly" as const },
+  { path: "/qui-sommes-nous", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/terrazzo", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/terrazzo-coule", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/granito", priority: 0.9, changeFrequency: "monthly" as const },
