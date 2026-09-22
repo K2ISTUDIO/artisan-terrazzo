@@ -31,6 +31,16 @@ export const metadata: Metadata = {
   },
   description:
     "Création, rénovation et réparation de terrazzo et granito sur mesure à Paris et en Île-de-France, pour particuliers, architectes et professionnels.",
+  openGraph: {
+    siteName: siteConfig.name,
+    locale: "fr_FR",
+    type: "website",
+    images: [{ url: "/images/og/artisan-terrazzo-og.jpg", width: 1200, height: 800 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/images/og/artisan-terrazzo-og.jpg"],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

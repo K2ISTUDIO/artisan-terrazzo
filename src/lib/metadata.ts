@@ -9,9 +9,12 @@ type PageMetaInput = {
   noindex?: boolean;
 };
 
+const DEFAULT_OG_IMAGE = "/images/og/artisan-terrazzo-og.jpg";
+
 export function buildMetadata({ title, description, path, image, noindex }: PageMetaInput): Metadata {
   const url = `${siteConfig.domain}${path}`;
-  const ogImage = image ?? "/images/logo/logo-couleur-texte.png";
+  const ogImage = image ?? DEFAULT_OG_IMAGE;
+  const ogImageEntry = image ? { url: ogImage } : { url: ogImage, width: 1200, height: 800 };
 
   return {
     title,
@@ -25,7 +28,7 @@ export function buildMetadata({ title, description, path, image, noindex }: Page
       siteName: siteConfig.name,
       locale: "fr_FR",
       type: "website",
-      images: [{ url: ogImage }],
+      images: [ogImageEntry],
     },
     twitter: {
       card: "summary_large_image",
