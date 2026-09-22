@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   L'Artisan Terrazzo — Design tokens
+   Editorial, artisanal, minéral. Palette pierre/anthracite + laiton.
+------------------------------------------------------------------ */
+
+:root {
+  --color-bone: #f7f4ee;
+  --color-bone-dark: #efe9df;
+  --color-stone: #e7dfd1;
+  --color-sand: #d9cbb0;
+  --color-mineral: #6f6a5f;
+  --color-mineral-light: #8c8676;
+  --color-anthracite: #24211d;
+  --color-anthracite-soft: #322e28;
+  --color-ink: #1a1712;
+  --color-brass: #a9822f;
+  --color-brass-light: #c9a24f;
+  --color-brass-dark: #8a6a24;
+  --color-terracotta: #b1552e;
+  --color-forest: #3c4a3a;
+  --color-line: #ddd3c0;
+
+  --font-display: "Fraunces", "Playfair Display", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --shadow-soft: 0 1px 2px rgba(26, 23, 18, 0.04), 0 8px 24px rgba(26, 23, 18, 0.06);
+  --shadow-lift: 0 4px 8px rgba(26, 23, 18, 0.06), 0 16px 40px rgba(26, 23, 18, 0.10);
+}
+
+@theme inline {
+  --color-bone: var(--color-bone);
+  --color-bone-dark: var(--color-bone-dark);
+  --color-stone: var(--color-stone);
+  --color-sand: var(--color-sand);
+  --color-mineral: var(--color-mineral);
+  --color-mineral-light: var(--color-mineral-light);
+  --color-anthracite: var(--color-anthracite);
+  --color-anthracite-soft: var(--color-anthracite-soft);
+  --color-ink: var(--color-ink);
+  --color-brass: var(--color-brass);
+  --color-brass-light: var(--color-brass-light);
+  --color-brass-dark: var(--color-brass-dark);
+  --color-terracotta: var(--color-terracotta);
+  --color-forest: var(--color-forest);
+  --color-line: var(--color-line);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  background: var(--color-bone);
+}
+
+body {
+  background: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-brass-light);
+  color: var(--color-ink);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Speckled terrazzo texture overlay, used sparingly on dark sections */
+.terrazzo-texture {
+  position: relative;
+  isolation: isolate;
+}
+
+.terrazzo-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 12% 22%, rgba(255,255,255,0.10) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 38% 68%, rgba(169,130,47,0.30) 0 2.5px, transparent 3px),
+    radial-gradient(circle at 62% 15%, rgba(255,255,255,0.08) 0 1.6px, transparent 2px),
+    radial-gradient(circle at 78% 52%, rgba(255,255,255,0.12) 0 2.2px, transparent 2.7px),
+    radial-gradient(circle at 20% 85%, rgba(255,255,255,0.09) 0 1.8px, transparent 2.2px),
+    radial-gradient(circle at 90% 80%, rgba(169,130,47,0.25) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 55% 40%, rgba(255,255,255,0.10) 0 1.5px, transparent 2px);
+  background-size: 220px 220px;
+}
+
+.container-page {
+  width: 100%;
+  max-width: 84rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
