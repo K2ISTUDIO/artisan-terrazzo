@@ -92,3 +92,36 @@ export function UploadIcon({ className = "w-5 h-5" }: IconProps) {
     </svg>
   );
 }
+
+export function FloorIcon({ className = "w-6 h-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M3 12h18M12 3v18" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="7.5" cy="7.5" r="0.9" fill="currentColor" />
+      <circle cx="16.3" cy="8.2" r="0.7" fill="currentColor" />
+      <circle cx="7.8" cy="16.3" r="0.7" fill="currentColor" />
+      <circle cx="16.5" cy="16.5" r="0.9" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function CounterIcon({ className = "w-6 h-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <rect x="3" y="5.5" width="18" height="3.5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M6.5 9v10M17.5 9v10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function MoreIcon({ className = "w-6 h-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="8" cy="12" r="1.15" fill="currentColor" />
+      <circle cx="12" cy="12" r="1.15" fill="currentColor" />
+      <circle cx="16" cy="12" r="1.15" fill="currentColor" />
+    </svg>
+  );
+}

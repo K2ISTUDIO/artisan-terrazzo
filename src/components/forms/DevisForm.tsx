@@ -4,10 +4,14 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { CheckIcon, ChevronDownIcon, UploadIcon } from "@/components/ui/Icons";
+import { CheckIcon, CounterIcon, FloorIcon, MoreIcon, UploadIcon } from "@/components/ui/Icons";
 import { trackEvent } from "@/lib/analytics";
 
-const PROJECT_TYPES = ["Sol", "Plan de travail", "Autre"];
+const PROJECT_TYPES = [
+  { label: "Sol", icon: FloorIcon },
+  { label: "Plan de travail", icon: CounterIcon },
+  { label: "Autre", icon: MoreIcon },
+] as const;
 
 const TIMING_OPTIONS = [
   "Dès que possible",
@@ -19,6 +23,7 @@ const TIMING_OPTIONS = [
 
 type FormState = {
   projectType: string;
+  projectTypeDetail: string;
   projectNature: "neuf" | "renovation" | "";
   city: string;
   postalCode: string;
@@ -35,6 +40,7 @@ type FormState = {
 
 const initialState: FormState = {
   projectType: "",
+  projectTypeDetail: "",
   projectNature: "",
   city: "",
   postalCode: "",
@@ -74,6 +80,9 @@ export function DevisForm() {
     const next: Record<string, string> = {};
     if (current === 0) {
       if (!form.projectType) next.projectType = "Sélectionnez un type de projet.";
+      if (form.projectType === "Autre" && !form.projectTypeDetail.trim()) {
+        next.projectTypeDetail = "Précisez votre projet.";
+      }
       if (!form.projectNature) next.projectNature = "Précisez s'il s'agit d'un projet neuf ou d'une rénovation.";
     }
     if (current === 1) {
@@ -167,30 +176,39 @@ export function DevisForm() {
         <fieldset className="space-y-6">
           <legend className="font-display text-2xl text-ink mb-1">Quel est votre projet ?</legend>
           <div>
-            <label htmlFor="projectType" className="block text-sm font-medium text-ink mb-2">
-              Type de projet
-            </label>
-            <div className="relative">
-              <select
-                id="projectType"
-                value={form.projectType}
-                onChange={(e) => update("projectType", e.target.value)}
-                className={`${inputClass(!!errors.projectType)} appearance-none pr-10 cursor-pointer ${
-                  form.projectType ? "" : "text-mineral/60"
-                }`}
-              >
-                <option value="" disabled>
-                  Sélectionnez un type de projet
-                </option>
-                {PROJECT_TYPES.map((type) => (
-                  <option key={type} value={type} className="text-ink">
-                    {type}
-                  </option>
-                ))}
-              </select>
-              <ChevronDownIcon className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mineral" />
+            <span className="block text-sm font-medium text-ink mb-3">Type de projet</span>
+            <div className="grid grid-cols-3 gap-2.5">
+              {PROJECT_TYPES.map(({ label, icon: Icon }) => (
+                <button
+                  type="button"
+                  key={label}
+                  onClick={() => update("projectType", label)}
+                  className={`flex flex-col items-center justify-center gap-2 rounded-xl border px-3 py-4 text-sm transition-colors duration-200 cursor-pointer focus-ring ${
+                    form.projectType === label
+                      ? "border-brass bg-brass/10 text-ink"
+                      : "border-line bg-white text-ink/70 hover:border-brass/40"
+                  }`}
+                >
+                  <Icon className={`w-6 h-6 ${form.projectType === label ? "text-brass-dark" : "text-mineral"}`} />
+                  {label}
+                </button>
+              ))}
             </div>
             {errors.projectType && <p className="mt-2 text-xs text-terracotta">{errors.projectType}</p>}
+
+            {form.projectType === "Autre" && (
+              <div className="mt-4">
+                <input
+                  type="text"
+                  value={form.projectTypeDetail}
+                  onChange={(e) => update("projectTypeDetail", e.target.value)}
+                  className={inputClass(!!errors.projectTypeDetail)}
+                  placeholder="Précisez votre projet (escalier, salle de bains, façade…)"
+                  autoFocus
+                />
+                {errors.projectTypeDetail && <p className="mt-2 text-xs text-terracotta">{errors.projectTypeDetail}</p>}
+              </div>
+            )}
           </div>
 
           <div>
