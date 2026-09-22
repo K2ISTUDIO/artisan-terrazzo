@@ -31,7 +31,7 @@ export function CTASection({
           </p>
         )}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <ButtonLink href={primaryHref} variant="primary">
+          <ButtonLink href={primaryHref} variant="cta">
             {primaryLabel}
           </ButtonLink>
           {secondaryLabel && secondaryHref && (

@@ -31,7 +31,7 @@ export default function ArtisanTerrazzoPage() {
               composition, au coulage, à la rénovation et au polissage du terrazzo et du granito — {siteConfig.tagline}.
             </p>
             <div className="mt-8">
-              <ButtonLink href="/demande-devis">Demander une étude de projet</ButtonLink>
+              <ButtonLink href="/demande-devis" variant="cta">Demander une étude de projet</ButtonLink>
             </div>
           </div>
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-stone">

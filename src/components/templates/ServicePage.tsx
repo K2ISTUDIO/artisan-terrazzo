@@ -74,7 +74,7 @@ export function ServicePage({
               </ul>
             )}
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <ButtonLink href="/demande-devis">Demander une étude de projet</ButtonLink>
+              <ButtonLink href="/demande-devis" variant="cta">Demander une étude de projet</ButtonLink>
               <ButtonLink href="/contact" variant="secondary">
                 Parler de mon projet
               </ButtonLink>

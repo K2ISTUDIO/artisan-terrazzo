@@ -42,7 +42,7 @@ export function DepartementPage({ dept, index }: { dept: Departement; index: num
             <h1 className="font-display text-4xl md:text-5xl text-ink text-balance leading-[1.08]">{dept.title}</h1>
             <p className="mt-5 text-base md:text-lg text-ink/70 leading-relaxed max-w-xl">{dept.intro}</p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <ButtonLink href="/demande-devis">Demander une étude de projet</ButtonLink>
+              <ButtonLink href="/demande-devis" variant="cta">Demander une étude de projet</ButtonLink>
               <ButtonLink href="/realisations" variant="secondary">
                 Voir nos réalisations
               </ButtonLink>

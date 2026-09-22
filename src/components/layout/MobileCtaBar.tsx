@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightIcon } from "@/components/ui/Icons";
 
 export function MobileCtaBar() {
   return (
@@ -8,9 +9,10 @@ export function MobileCtaBar() {
     >
       <Link
         href="/demande-devis"
-        className="flex items-center justify-center h-16 text-sm font-semibold bg-brass-dark text-bone cursor-pointer focus-ring"
+        className="group flex items-center justify-center gap-2 h-16 text-sm font-semibold bg-brass-dark text-bone cursor-pointer focus-ring"
       >
         Demander une étude de projet
+        <ArrowRightIcon className="w-4 h-4 shrink-0 transition-transform duration-[350ms] ease-out group-hover:translate-x-1" />
       </Link>
     </div>
   );

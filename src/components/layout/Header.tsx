@@ -75,7 +75,7 @@ export function Header() {
         </nav>
 
         <div className="hidden xl:flex items-center gap-3 shrink-0">
-          <ButtonLink href="/demande-devis" className="!py-3">
+          <ButtonLink href="/demande-devis" variant="cta" className="!h-10">
             Demander une étude
           </ButtonLink>
         </div>
@@ -129,7 +129,7 @@ export function Header() {
               </div>
             ))}
             <div className="mt-6 flex flex-col gap-3">
-              <ButtonLink href="/demande-devis" className="w-full">
+              <ButtonLink href="/demande-devis" variant="cta" className="w-full">
                 Demander une étude de projet
               </ButtonLink>
             </div>

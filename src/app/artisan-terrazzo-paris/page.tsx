@@ -55,7 +55,7 @@ export default function ArtisanTerrazzoParisPage() {
               ))}
             </ul>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <ButtonLink href="/demande-devis">Demander une étude de projet</ButtonLink>
+              <ButtonLink href="/demande-devis" variant="cta">Demander une étude de projet</ButtonLink>
               <ButtonLink href="/realisations" variant="secondary">
                 Voir nos réalisations
               </ButtonLink>
