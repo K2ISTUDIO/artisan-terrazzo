@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/sections/HomeHero";
 import { ReassuranceStrip } from "@/components/sections/ReassuranceStrip";
+import { TrustBar } from "@/components/sections/TrustBar";
 import { SavoirFaireSection } from "@/components/sections/SavoirFaireSection";
 import { ServiceGrid } from "@/components/sections/ServiceGrid";
 import { PersonnalisationSection } from "@/components/sections/PersonnalisationSection";
@@ -24,6 +25,7 @@ export default function HomePage() {
     <>
       <HomeHero />
       <ReassuranceStrip />
+      <TrustBar />
       <SavoirFaireSection />
       <ServiceGrid />
       <PersonnalisationSection />

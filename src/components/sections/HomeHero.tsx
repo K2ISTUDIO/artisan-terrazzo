@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/site-config";
 
 export function HomeHero() {
+  const { foundedYear } = siteConfig.stats;
+
   return (
     <section className="relative overflow-hidden">
       <div className="container-page py-14 md:py-20 grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
@@ -10,11 +13,13 @@ export function HomeHero() {
             Terrazzo &amp; granito &middot; Paris &amp; Île-de-France
           </p>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] text-ink leading-[1.06] text-balance">
-            Artisan terrazzo à Paris et en Île-de-France
+            L&rsquo;artisan terrazzo, entreprise familiale
+            {foundedYear ? ` depuis ${foundedYear}` : ""}, à Paris et en Île-de-France
           </h1>
           <p className="mt-6 text-base md:text-lg text-ink/70 leading-relaxed max-w-xl">
-            Création, rénovation et réalisation de terrazzo et granito sur mesure pour particuliers, architectes et
-            professionnels.
+            {foundedYear
+              ? "Création, rénovation et réalisation de terrazzo et granito sur mesure pour particuliers, architectes et professionnels."
+              : "Depuis plusieurs générations, nous créons, rénovons et réalisons des terrazzos et granitos sur mesure pour particuliers, architectes et professionnels."}
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
             <ButtonLink href="/demande-devis">Demander une étude de projet</ButtonLink>

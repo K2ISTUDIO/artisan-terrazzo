@@ -59,7 +59,11 @@ export const siteConfig = {
   certifications: [] as { label: string; issuer?: string }[],
 
   // Leave null until real, verifiable figures exist (do not estimate).
+  // foundedYear drives the "entreprise familiale depuis {year}" framing on
+  // the homepage hero — set it once the real founding year is confirmed;
+  // the hero falls back to "plusieurs générations" until then.
   stats: {
+    foundedYear: null as number | null,
     yearsOfExperience: null as number | null,
     projectsCompleted: null as number | null,
     googleRating: null as { value: number; count: number } | null,

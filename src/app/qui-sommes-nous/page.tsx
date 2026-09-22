@@ -344,21 +344,24 @@ export default function QuiSommesNousPage() {
           </div>
 
           <div className="rounded-3xl border border-line bg-white p-10 md:p-14">
-            <p className="text-xs uppercase tracking-[0.2em] text-mineral mb-8 text-center">Parmi nos références</p>
-            <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-mineral mb-10 text-center">Parmi nos références</p>
+            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-10">
               {clientReferences.map((ref) => (
-                <span
-                  key={ref.name}
-                  className="font-display text-3xl md:text-4xl text-ink/50 grayscale"
-                  style={{ letterSpacing: "0.02em" }}
-                >
-                  {ref.name}
-                </span>
+                <div key={ref.name} className="relative h-10 w-36 shrink-0">
+                  <Image
+                    src={ref.logo}
+                    alt={ref.name}
+                    fill
+                    sizes="144px"
+                    className="object-contain grayscale opacity-70 transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                  />
+                </div>
               ))}
             </div>
             <p className="mt-10 text-sm text-ink/60 text-center max-w-xl mx-auto leading-relaxed">
               Notre savoir-faire nous a notamment amenés à intervenir sur des projets liés à des acteurs tels que
-              Hermès et Vinci. Chaque chantier reste avant tout une relation de confiance.
+              Hermès, Vinci, LVMH, Eiffage, Fayat ou les Galeries Lafayette. Chaque chantier reste avant tout une
+              relation de confiance.
             </p>
           </div>
         </div>
