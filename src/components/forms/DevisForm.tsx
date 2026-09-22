@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { CheckIcon, UploadIcon } from "@/components/ui/Icons";
+import { CheckIcon, ChevronDownIcon, UploadIcon } from "@/components/ui/Icons";
 import { trackEvent } from "@/lib/analytics";
 
 const PROJECT_TYPES = [
@@ -180,22 +180,28 @@ export function DevisForm() {
         <fieldset className="space-y-6">
           <legend className="font-display text-2xl text-ink mb-1">Quel est votre projet ?</legend>
           <div>
-            <span className="block text-sm font-medium text-ink mb-3">Type de projet</span>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-              {PROJECT_TYPES.map((type) => (
-                <button
-                  type="button"
-                  key={type}
-                  onClick={() => update("projectType", type)}
-                  className={`rounded-xl border px-3.5 py-3 text-sm text-left transition-colors duration-200 cursor-pointer focus-ring ${
-                    form.projectType === type
-                      ? "border-brass bg-brass/10 text-ink"
-                      : "border-line bg-white text-ink/70 hover:border-brass/40"
-                  }`}
-                >
-                  {type}
-                </button>
-              ))}
+            <label htmlFor="projectType" className="block text-sm font-medium text-ink mb-2">
+              Type de projet
+            </label>
+            <div className="relative">
+              <select
+                id="projectType"
+                value={form.projectType}
+                onChange={(e) => update("projectType", e.target.value)}
+                className={`${inputClass(!!errors.projectType)} appearance-none pr-10 cursor-pointer ${
+                  form.projectType ? "" : "text-mineral/60"
+                }`}
+              >
+                <option value="" disabled>
+                  Sélectionnez un type de projet
+                </option>
+                {PROJECT_TYPES.map((type) => (
+                  <option key={type} value={type} className="text-ink">
+                    {type}
+                  </option>
+                ))}
+              </select>
+              <ChevronDownIcon className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mineral" />
             </div>
             {errors.projectType && <p className="mt-2 text-xs text-terracotta">{errors.projectType}</p>}
           </div>

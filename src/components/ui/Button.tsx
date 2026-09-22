@@ -4,13 +4,14 @@ import type { ComponentPropsWithoutRef } from "react";
 type Variant = "primary" | "secondary" | "ghost";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide transition-colors duration-200 cursor-pointer focus-ring disabled:opacity-50 disabled:cursor-not-allowed";
+  "inline-flex items-center justify-center gap-2 rounded-full tracking-wide transition-all duration-200 cursor-pointer focus-ring disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 disabled:shadow-none";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-anthracite text-bone hover:bg-ink px-6 py-3.5 text-sm",
+  primary:
+    "bg-brass text-ink font-semibold hover:bg-brass-light px-7 py-4 text-sm shadow-[0_6px_20px_-6px_rgba(169,130,47,0.6)] hover:shadow-[0_10px_24px_-6px_rgba(169,130,47,0.65)] hover:-translate-y-0.5",
   secondary:
-    "bg-transparent text-anthracite border border-anthracite/30 hover:border-anthracite hover:bg-anthracite/5 px-6 py-3.5 text-sm",
-  ghost: "bg-transparent text-brass-dark hover:text-brass-dark underline underline-offset-4 px-0 py-1 text-sm",
+    "bg-transparent text-anthracite font-medium border border-anthracite/30 hover:border-anthracite hover:bg-anthracite/5 px-6 py-3.5 text-sm",
+  ghost: "bg-transparent text-brass-dark font-medium hover:text-brass-dark underline underline-offset-4 px-0 py-1 text-sm",
 };
 
 type ButtonLinkProps = {

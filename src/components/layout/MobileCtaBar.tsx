@@ -8,7 +8,7 @@ export function MobileCtaBar() {
     >
       <Link
         href="/demande-devis"
-        className="flex items-center justify-center h-16 text-sm font-medium bg-anthracite text-bone cursor-pointer focus-ring"
+        className="flex items-center justify-center h-16 text-sm font-semibold bg-brass text-ink cursor-pointer focus-ring"
       >
         Demander une étude de projet
       </Link>
