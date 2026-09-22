@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/Button";
+import { TerrazzoBackground } from "@/components/sections/TerrazzoBackground";
 import { siteConfig } from "@/lib/site-config";
 
 export function HomeHero() {
@@ -7,7 +8,8 @@ export function HomeHero() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="container-page py-14 md:py-20 grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
+      <TerrazzoBackground />
+      <div className="container-page relative z-10 py-14 md:py-20 grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
         <div>
           <p className="animate-fade-up text-xs uppercase tracking-[0.2em] text-brass-dark mb-5">
             Terrazzo &amp; granito &middot; Paris &amp; Île-de-France

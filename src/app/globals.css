@@ -184,3 +184,47 @@ body {
   opacity: 0;
   animation: fade-scale 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Terrazzo hero background — floating stone-chip fragments.
+   Each keyframe returns exactly to its 0% transform so the loop never
+   jumps, and only `transform` is animated (opacity is a static per-
+   fragment value) so a frozen mid-loop frame under prefers-reduced-motion
+   always shows a fully-formed, visible chip. */
+@keyframes tz-drift-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(3%, -4%, 0) rotate(9deg); }
+}
+@keyframes tz-drift-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-4%, 3%, 0) rotate(-11deg); }
+}
+@keyframes tz-drift-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  33% { transform: translate3d(2.5%, 2.5%, 0) rotate(6deg); }
+  66% { transform: translate3d(-2%, 4%, 0) rotate(-5deg); }
+}
+@keyframes tz-drift-4 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-3%, -3.5%, 0) rotate(13deg); }
+}
+@keyframes tz-drift-5 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(4.5%, 1.5%, 0) rotate(-8deg); }
+}
+@keyframes tz-drift-6 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-1.5%, -4.5%, 0) rotate(5deg); }
+}
+
+.terrazzo-fragment {
+  position: absolute;
+  will-change: transform;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terrazzo-fragment {
+    will-change: auto;
+  }
+}
