@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { ButtonLink } from "@/components/ui/Button";
-import { TerrazzoBackground } from "@/components/sections/TerrazzoBackground";
+import Link from "next/link";
+import { ArrowRightIcon } from "@/components/ui/Icons";
+import { TerrazzoScene } from "@/components/sections/terrazzo-scene";
 import { siteConfig } from "@/lib/site-config";
 
 export function HomeHero() {
@@ -8,7 +9,7 @@ export function HomeHero() {
 
   return (
     <section className="relative overflow-hidden">
-      <TerrazzoBackground />
+      <TerrazzoScene />
       <div className="container-page relative z-10 py-14 md:py-20 grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
         <div>
           <p className="animate-fade-up text-xs uppercase tracking-[0.2em] text-brass-dark mb-5">
@@ -29,11 +30,21 @@ export function HomeHero() {
               ? "Création, rénovation et réalisation de terrazzo et granito sur mesure pour particuliers, architectes et professionnels."
               : "Depuis plusieurs générations, nous créons, rénovons et réalisons des terrazzos et granitos sur mesure pour particuliers, architectes et professionnels."}
           </p>
-          <div className="animate-fade-up mt-8 flex flex-col sm:flex-row gap-4" style={{ animationDelay: "360ms" }}>
-            <ButtonLink href="/demande-devis">Demander une étude de projet</ButtonLink>
-            <ButtonLink href="/realisations" variant="secondary">
+          <div className="animate-fade-up mt-8 flex flex-col sm:flex-row gap-3.5" style={{ animationDelay: "360ms" }}>
+            <Link
+              href="/demande-devis"
+              className="group inline-flex h-[50px] items-center justify-center gap-2.5 rounded-[4px] bg-anthracite px-7 text-sm font-medium tracking-wide text-bone transition-colors duration-[350ms] ease-out hover:bg-ink focus-ring"
+            >
+              Demander une étude de projet
+              <ArrowRightIcon className="w-4 h-4 shrink-0 transition-transform duration-[350ms] ease-out group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/realisations"
+              className="group inline-flex h-[50px] items-center justify-center gap-2.5 rounded-[4px] border border-anthracite/35 px-7 text-sm font-medium tracking-wide text-anthracite transition-colors duration-[350ms] ease-out hover:border-anthracite/60 hover:bg-stone/50 focus-ring"
+            >
               Voir nos réalisations
-            </ButtonLink>
+              <ArrowRightIcon className="w-4 h-4 shrink-0 -rotate-45 transition-transform duration-[350ms] ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         </div>
 

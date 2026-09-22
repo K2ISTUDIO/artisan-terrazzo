@@ -185,46 +185,110 @@ body {
   animation: fade-scale 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Terrazzo hero background — floating stone-chip fragments.
-   Each keyframe returns exactly to its 0% transform so the loop never
-   jumps, and only `transform` is animated (opacity is a static per-
-   fragment value) so a frozen mid-loop frame under prefers-reduced-motion
-   always shows a fully-formed, visible chip. */
-@keyframes tz-drift-1 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  50% { transform: translate3d(3%, -4%, 0) rotate(9deg); }
+/* ------------------------------------------------------------------
+   Terrazzo hero scene — "terrazzo in suspension".
+   Every keyframe returns exactly to its 0% transform, so the infinite
+   loop never jumps. Only `transform` is animated here; opacity and blur
+   are handled once by .tz-emerge (mount) and never touched again, so a
+   frame frozen by prefers-reduced-motion always shows a fully-formed,
+   correctly-positioned fragment rather than a half-materialized one.
+------------------------------------------------------------------ */
+@keyframes tz-drift-a {
+  0%, 100% { transform: translate3d(-15px, 30px, 0) rotate(-8deg); }
+  50% { transform: translate3d(20px, -20px, 0) rotate(12deg); }
 }
-@keyframes tz-drift-2 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  50% { transform: translate3d(-4%, 3%, 0) rotate(-11deg); }
+@keyframes tz-drift-b {
+  0%, 100% { transform: translate3d(10px, -10px, 0) rotate(15deg); }
+  50% { transform: translate3d(-25px, 25px, 0) rotate(-10deg); }
 }
-@keyframes tz-drift-3 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  33% { transform: translate3d(2.5%, 2.5%, 0) rotate(6deg); }
-  66% { transform: translate3d(-2%, 4%, 0) rotate(-5deg); }
+@keyframes tz-drift-c {
+  0%, 100% { transform: translate3d(0, -18px, 0) rotate(0deg); }
+  25% { transform: translate3d(18px, 0, 0) rotate(6deg); }
+  50% { transform: translate3d(0, 18px, 0) rotate(0deg); }
+  75% { transform: translate3d(-18px, 0, 0) rotate(-6deg); }
 }
-@keyframes tz-drift-4 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  50% { transform: translate3d(-3%, -3.5%, 0) rotate(13deg); }
+@keyframes tz-drift-d {
+  0%, 100% { transform: translate3d(12px, 14px, 0) rotate(10deg); }
+  50% { transform: translate3d(-16px, -10px, 0) rotate(-14deg); }
 }
-@keyframes tz-drift-5 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  50% { transform: translate3d(4.5%, 1.5%, 0) rotate(-8deg); }
+@keyframes tz-drift-e {
+  0%, 100% { transform: translate3d(-20px, -8px, 0) rotate(-6deg); }
+  50% { transform: translate3d(14px, 16px, 0) rotate(9deg); }
 }
-@keyframes tz-drift-6 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  50% { transform: translate3d(-1.5%, -4.5%, 0) rotate(5deg); }
+@keyframes tz-drift-f {
+  0%, 100% { transform: translate3d(8px, -20px, 0) rotate(5deg); }
+  33% { transform: translate3d(-10px, 6px, 0) rotate(-9deg); }
+  66% { transform: translate3d(16px, 10px, 0) rotate(11deg); }
 }
 
-.terrazzo-fragment {
-  position: absolute;
+/* Smaller-amplitude variants for the 3–14px micro-aggregate dust layer. */
+@keyframes tz-drift-micro-1 {
+  0%, 100% { transform: translate3d(-4px, 6px, 0) rotate(0deg); }
+  50% { transform: translate3d(5px, -5px, 0) rotate(20deg); }
+}
+@keyframes tz-drift-micro-2 {
+  0%, 100% { transform: translate3d(3px, -6px, 0) rotate(0deg); }
+  50% { transform: translate3d(-6px, 4px, 0) rotate(-15deg); }
+}
+@keyframes tz-drift-micro-3 {
+  0%, 100% { transform: translate3d(-3px, -4px, 0) rotate(0deg); }
+  50% { transform: translate3d(4px, 7px, 0) rotate(10deg); }
+}
+
+/* Mount animation: opacity/blur/scale/translateY settle once, then the
+   drift layer (a separate nested element) takes over — kept on separate
+   elements because both would otherwise fight over `transform`. */
+@keyframes tz-emerge {
+  from {
+    opacity: 0;
+    filter: blur(var(--tz-blur-from, 6px));
+    transform: scale(0.85) translateY(20px);
+  }
+  to {
+    opacity: var(--tz-opacity, 1);
+    filter: blur(var(--tz-blur-to, 0px));
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Very slow ambient light drift, ~imperceptible. */
+@keyframes tz-ambient-shift {
+  0%, 100% { transform: translate3d(-1.5%, -1%, 0); }
+  50% { transform: translate3d(1.5%, 1.5%, 0); }
+}
+
+.tz-emerge {
+  opacity: 0;
+  animation: tz-emerge 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--tz-emerge-delay, 0s);
+}
+
+.tz-drift {
   will-change: transform;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95);
   animation-iteration-count: infinite;
 }
 
+.tz-parallax-layer {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.tz-ambient {
+  animation: tz-ambient-shift 32s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .terrazzo-fragment {
+  .tz-drift,
+  .tz-ambient {
+    animation: none !important;
+  }
+  .tz-parallax-layer {
+    transition: none !important;
+    transform: none !important;
+  }
+  .tz-drift,
+  .tz-parallax-layer {
     will-change: auto;
   }
 }
