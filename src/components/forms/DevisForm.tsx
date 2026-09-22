@@ -7,20 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { CheckIcon, ChevronDownIcon, UploadIcon } from "@/components/ui/Icons";
 import { trackEvent } from "@/lib/analytics";
 
-const PROJECT_TYPES = [
-  "Sol terrazzo",
-  "Sol granito",
-  "Plan de travail",
-  "Salle de bains",
-  "Cuisine",
-  "Escalier",
-  "Rénovation terrazzo",
-  "Réparation",
-  "Commerce",
-  "Hôtel / restaurant",
-  "Projet architecte",
-  "Autre",
-];
+const PROJECT_TYPES = ["Sol", "Plan de travail", "Autre"];
 
 const TIMING_OPTIONS = [
   "Dès que possible",
