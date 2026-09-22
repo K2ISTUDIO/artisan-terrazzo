@@ -31,9 +31,6 @@ export const metadata: Metadata = {
   },
   description:
     "Création, rénovation et réparation de terrazzo et granito sur mesure à Paris et en Île-de-France, pour particuliers, architectes et professionnels.",
-  icons: {
-    icon: "/images/logo/monogramme-noir.png",
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
