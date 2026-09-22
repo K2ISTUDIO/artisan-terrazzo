@@ -30,8 +30,6 @@ const TIMING_OPTIONS = [
   "Pas encore défini",
 ];
 
-const BUDGET_OPTIONS = ["Moins de 5 000 €", "5 000 € – 15 000 €", "15 000 € – 40 000 €", "Plus de 40 000 €", "Je préfère en discuter"];
-
 type FormState = {
   projectType: string;
   projectNature: "neuf" | "renovation" | "";
@@ -39,7 +37,6 @@ type FormState = {
   postalCode: string;
   surface: string;
   timing: string;
-  budget: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -56,7 +53,6 @@ const initialState: FormState = {
   postalCode: "",
   surface: "",
   timing: "",
-  budget: "",
   firstName: "",
   lastName: "",
   email: "",
@@ -280,23 +276,6 @@ export function DevisForm() {
               ))}
             </div>
             {errors.timing && <p className="mt-2 text-xs text-terracotta">{errors.timing}</p>}
-          </div>
-          <div>
-            <span className="block text-sm font-medium text-ink mb-3">Budget approximatif (facultatif)</span>
-            <div className="flex flex-wrap gap-2.5">
-              {BUDGET_OPTIONS.map((option) => (
-                <button
-                  type="button"
-                  key={option}
-                  onClick={() => update("budget", form.budget === option ? "" : option)}
-                  className={`rounded-full border px-4 py-2 text-sm transition-colors duration-200 cursor-pointer focus-ring ${
-                    form.budget === option ? "border-brass bg-brass/10 text-ink" : "border-line bg-white text-ink/70 hover:border-brass/40"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
           </div>
         </fieldset>
       )}

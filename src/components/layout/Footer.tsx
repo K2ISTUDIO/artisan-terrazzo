@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { footerNav, legalNav } from "@/data/nav";
 import { siteConfig } from "@/lib/site-config";
-import { MailIcon, PhoneIcon } from "@/components/ui/Icons";
-import { EmailLink, PhoneLink } from "@/components/ui/TrackedLink";
+import { MailIcon } from "@/components/ui/Icons";
+import { EmailLink } from "@/components/ui/TrackedLink";
 
 export function Footer() {
   return (
@@ -25,10 +25,6 @@ export function Footer() {
               Création, rénovation et réparation de terrazzo et granito sur mesure, pour particuliers, architectes et professionnels — {siteConfig.tagline}.
             </p>
             <div className="mt-6 flex flex-col gap-2.5">
-              <PhoneLink className="flex items-center gap-2 text-sm text-bone/85 hover:text-bone transition-colors duration-200 focus-ring rounded">
-                <PhoneIcon className="w-4 h-4 text-brass-light" />
-                {siteConfig.phone.display}
-              </PhoneLink>
               <EmailLink className="flex items-center gap-2 text-sm text-bone/85 hover:text-bone transition-colors duration-200 focus-ring rounded">
                 <MailIcon className="w-4 h-4 text-brass-light" />
                 {siteConfig.email}

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { DevisForm } from "@/components/forms/DevisForm";
-import { CheckIcon, MailIcon, PhoneIcon } from "@/components/ui/Icons";
-import { PhoneLink, EmailLink } from "@/components/ui/TrackedLink";
+import { CheckIcon } from "@/components/ui/Icons";
 import { buildMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = buildMetadata({
   title: "Demander une étude de projet",
@@ -45,17 +43,6 @@ export default function DemandeDevisPage() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 pt-6 border-t border-line space-y-3">
-                <p className="text-xs uppercase tracking-wide text-mineral">Vous préférez nous joindre directement ?</p>
-                <PhoneLink className="flex items-center gap-2 text-sm text-ink hover:text-brass-dark transition-colors duration-200 focus-ring rounded">
-                  <PhoneIcon className="w-4 h-4 text-brass-dark" />
-                  {siteConfig.phone.display}
-                </PhoneLink>
-                <EmailLink className="flex items-center gap-2 text-sm text-ink hover:text-brass-dark transition-colors duration-200 focus-ring rounded">
-                  <MailIcon className="w-4 h-4 text-brass-dark" />
-                  {siteConfig.email}
-                </EmailLink>
-              </div>
             </div>
           </aside>
         </div>

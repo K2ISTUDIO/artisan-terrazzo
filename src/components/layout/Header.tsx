@@ -5,10 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { mainNav } from "@/data/nav";
-import { siteConfig } from "@/lib/site-config";
 import { ButtonLink } from "@/components/ui/Button";
-import { ChevronDownIcon, CloseIcon, MenuIcon, PhoneIcon } from "@/components/ui/Icons";
-import { PhoneLink } from "@/components/ui/TrackedLink";
+import { ChevronDownIcon, CloseIcon, MenuIcon } from "@/components/ui/Icons";
 
 export function Header() {
   const pathname = usePathname();
@@ -34,7 +32,7 @@ export function Header() {
       <div className="container-page flex h-18 md:h-20 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="L'Artisan Terrazzo — accueil">
           <Image
-            src="/images/logo/monogramme-noir.png"
+            src="/images/logo/monogramme-couleur.png"
             alt=""
             width={40}
             height={40}
@@ -77,10 +75,6 @@ export function Header() {
         </nav>
 
         <div className="hidden xl:flex items-center gap-3 shrink-0">
-          <PhoneLink className="flex items-center gap-2 text-sm text-ink/80 hover:text-ink transition-colors duration-200 focus-ring rounded-full px-2 py-1">
-            <PhoneIcon className="w-4 h-4 text-brass-dark" />
-            {siteConfig.phone.display}
-          </PhoneLink>
           <ButtonLink href="/demande-devis" className="!py-3">
             Demander une étude
           </ButtonLink>
@@ -135,10 +129,6 @@ export function Header() {
               </div>
             ))}
             <div className="mt-6 flex flex-col gap-3">
-              <PhoneLink className="flex items-center gap-2 text-base text-ink py-2 focus-ring rounded">
-                <PhoneIcon className="w-5 h-5 text-brass-dark" />
-                {siteConfig.phone.display}
-              </PhoneLink>
               <ButtonLink href="/demande-devis" className="w-full">
                 Demander une étude de projet
               </ButtonLink>

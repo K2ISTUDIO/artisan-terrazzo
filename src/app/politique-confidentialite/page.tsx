@@ -69,8 +69,7 @@ export default function PolitiqueConfidentialitePage() {
             <section>
               <h2 className="font-display text-xl text-ink mb-3">Contact</h2>
               <p>
-                Pour toute question relative à cette politique de confidentialité : {siteConfig.email} —{" "}
-                {siteConfig.phone.display}.
+                Pour toute question relative à cette politique de confidentialité : {siteConfig.email}.
               </p>
             </section>
           </div>

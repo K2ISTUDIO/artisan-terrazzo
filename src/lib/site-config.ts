@@ -17,7 +17,10 @@ export const siteConfig = {
   tagline: "de père en fils",
   domain: "https://artisan-terrazzo.fr",
 
-  // Placeholder contact details — classic French dummy number, replace with real ones.
+  // Intentionally not rendered anywhere in the UI: by client decision, every
+  // contact path funnels through the lead form instead of a phone number,
+  // so submissions are always captured as structured leads. Kept here only
+  // in case a call-tracking number is reintroduced later.
   phone: {
     display: "01 23 45 67 89",
     href: "tel:+33123456789",

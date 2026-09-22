@@ -37,7 +37,7 @@ export default function MentionsLegalesPage() {
                 <br />
                 Directeur de la publication : <em>à compléter</em>
                 <br />
-                Contact : {siteConfig.email} — {siteConfig.phone.display}
+                Contact : {siteConfig.email}
               </p>
             </section>
 

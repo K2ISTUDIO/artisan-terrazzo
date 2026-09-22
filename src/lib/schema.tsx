@@ -8,7 +8,6 @@ export function localBusinessSchema() {
     description:
       "Artisan spécialisé dans la création, la rénovation et la réparation de sols et surfaces en terrazzo et granito, à Paris et en Île-de-France.",
     url: siteConfig.domain,
-    telephone: siteConfig.phone.href.replace("tel:", ""),
     email: siteConfig.email,
     image: `${siteConfig.domain}/images/logo/logo-couleur-texte.png`,
     priceRange: "€€-€€€",
