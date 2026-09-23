@@ -36,8 +36,8 @@ export default function TerrazzoCuisinePage() {
         },
         {
           heading: "Plan de travail et îlot assortis",
-          image: "/images/realisations/chantier-02.jpg",
-          imageAlt: "Plan de travail en terrazzo assorti au sol de la cuisine",
+          image: "/images/plan-de-travail/table-angle.jpg",
+          imageAlt: "Angle d'un plan en terrazzo aux granulats terracotta et noirs",
           reverse: true,
           paragraphs: [
             "Nous déclinons volontiers une même composition de granulats entre le sol et le plan de travail, pour une cuisine dont chaque surface minérale raconte la même histoire — jusqu'à l'îlot central lorsque la configuration s'y prête.",

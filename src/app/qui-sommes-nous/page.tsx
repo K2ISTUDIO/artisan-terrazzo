@@ -509,8 +509,8 @@ export default function QuiSommesNousPage() {
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-stone">
             <Image
-              src="/images/realisations/chantier-02.jpg"
-              alt="Plan de travail en terrazzo aux granulats colorés"
+              src="/images/plan-de-travail/table-restaurant.jpg"
+              alt="Table en terrazzo, mobilier sur mesure"
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"
               className="object-cover"

@@ -15,7 +15,7 @@ const gallery = [
   { src: "/images/realisations/chantier-11.jpg", alt: "Sol en terrazzo poli dans une pièce de vie", tag: "Sol" },
   { src: "/images/realisations/chantier-15.jpg", alt: "Sol en terrazzo dans une cuisine", tag: "Cuisine" },
   { src: "/images/realisations/chantier-02.jpg", alt: "Détail de granulats de marbre colorés", tag: "Matière" },
-  { src: "/images/realisations/chantier-25.jpg", alt: "Plan et sol en terrazzo dans un espace de réception", tag: "Plan de travail" },
+  { src: "/images/plan-de-travail/plan-cuisine.jpg", alt: "Plan de travail en terrazzo dans une cuisine", tag: "Plan de travail" },
   { src: "/images/realisations/chantier-13.jpg", alt: "Sol en granito ancien dans un immeuble", tag: "Granito ancien" },
   { src: "/images/realisations/chantier-19.jpg", alt: "Grand sol en terrazzo dans un espace ouvert", tag: "Commerce" },
   { src: "/images/realisations/chantier-06.jpg", alt: "Coulage d'un terrazzo sur chantier", tag: "Chantier" },

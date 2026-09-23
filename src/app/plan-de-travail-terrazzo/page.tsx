@@ -18,8 +18,8 @@ export default function PlanDeTravailPage() {
       eyebrow="Application"
       h1="Plan de travail en terrazzo sur mesure"
       intro="Plan de travail de cuisine, plan vasque de salle de bains ou îlot central : le terrazzo se façonne sur mesure, dans la teinte et les granulats qui prolongent l'identité de votre pièce."
-      heroImage="/images/realisations/chantier-25.jpg"
-      heroImageAlt="Plan de travail en terrazzo dans un espace de réception"
+      heroImage="/images/plan-de-travail/plan-cuisine.jpg"
+      heroImageAlt="Plan de travail en terrazzo dans une cuisine, découpe évier"
       highlights={[
         "Plan de travail, plan vasque ou îlot central sur mesure",
         "Teinte et granulats assortis au reste de la pièce",
@@ -28,8 +28,8 @@ export default function PlanDeTravailPage() {
       blocks={[
         {
           heading: "Un plan façonné à partir d'une dalle",
-          image: "/images/realisations/chantier-02.jpg",
-          imageAlt: "Détail d'un plan en terrazzo aux granulats colorés",
+          image: "/images/plan-de-travail/vasque-salle-de-bain.jpg",
+          imageAlt: "Plan vasque en terrazzo façonné sur mesure avec découpe double vasque",
           paragraphs: [
             "Contrairement au sol coulé sur place, un plan de travail en terrazzo est le plus souvent façonné en atelier à partir d'une dalle, puis découpé et posé sur mesure selon vos plans de cuisine ou de salle de bains — avec découpes pour évier, plaque de cuisson ou robinetterie.",
           ],
