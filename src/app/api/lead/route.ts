@@ -12,8 +12,6 @@ import { siteConfig } from "@/lib/site-config";
 
 const REQUIRED_FIELDS = ["projectType", "firstName", "lastName", "email", "phone", "city", "postalCode"] as const;
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const FIELD_LABELS: [label: string, key: string][] = [
   ["Type de projet", "projectType"],
   ["Précision", "projectTypeDetail"],
@@ -75,6 +73,7 @@ export async function POST(request: Request) {
       console.warn("[lead] RESEND_API_KEY absent — e-mail de notification non envoyé");
     } else {
       try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
         const attachments = await Promise.all(
           files.map(async (file) => ({
             filename: file.name,
