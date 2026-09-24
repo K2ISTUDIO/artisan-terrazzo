@@ -88,7 +88,7 @@ export async function POST(request: Request) {
             : `Nouvelle demande de devis — ${payload.firstName} ${payload.lastName}`;
 
         const { error } = await resend.emails.send({
-          from: "L'Artisan Terrazzo <onboarding@resend.dev>",
+          from: `${siteConfig.name} <${siteConfig.email}>`,
           to: siteConfig.email,
           replyTo: payload.email,
           subject,
