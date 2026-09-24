@@ -46,6 +46,7 @@ export const footerNav: NavGroup[] = [
       { label: "Le granito", href: "/granito" },
       { label: "L'artisan à Paris", href: "/artisan-terrazzo-paris" },
       { label: "Entreprise de terrazzo", href: "/entreprise-terrazzo" },
+      { label: "Société de terrazzo à Paris", href: "/societe-terrazzo-paris" },
       { label: "Prix au m²", href: "/prix-terrazzo" },
     ],
   },

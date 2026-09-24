@@ -10,7 +10,7 @@ Faire d'artisan-terrazzo.fr une référence francophone sur le terrazzo et le gr
 terrazzo, terrazzo coulé, terrazzo coulé sur place, granito, prix terrazzo, prix terrazzo m2
 
 ### Cluster "prestataire" (intention transactionnelle)
-artisan terrazzo, artisan terrazzo Paris, entreprise terrazzo, société terrazzo, spécialiste terrazzo, artisan granito, entreprise granito
+artisan terrazzo, artisan terrazzo Paris, entreprise terrazzo, société terrazzo, société terrazzo Paris, spécialiste terrazzo, artisan granito, entreprise granito
 
 ### Cluster "application" (intention projet)
 sol terrazzo, granito Paris, plan de travail terrazzo, cuisine terrazzo, salle de bain terrazzo, escalier terrazzo, pose terrazzo
@@ -33,7 +33,8 @@ artisan terrazzo + [département/ville] pour les 8 zones prioritaires (75, 92, 9
 | `/granito` | Pilier matière (FR) | granito, terrazzo vs granito |
 | `/prix-terrazzo` | Pilier conversion | prix terrazzo, prix terrazzo m2 |
 | `/artisan-terrazzo-paris` | Pilier local flagship | artisan terrazzo Paris |
-| `/entreprise-terrazzo` | Pilier B2B | entreprise terrazzo, société terrazzo (redirigée ici) |
+| `/entreprise-terrazzo` | Pilier B2B | entreprise terrazzo |
+| `/societe-terrazzo-paris` | Pilier local (angle structure/process) | société terrazzo Paris |
 
 ## 4. Pages secondaires
 
@@ -47,9 +48,15 @@ artisan terrazzo + [département/ville] pour les 8 zones prioritaires (75, 92, 9
 
 Le brief initial demandait à la fois `/entreprise-terrazzo` et `/societe-terrazzo`, ainsi que `/artisan-terrazzo-75` en plus de `/artisan-terrazzo-paris`. Ces paires ciblent la même intention de recherche : les dupliquer aurait produit du contenu quasi identique, pénalisant les deux pages en cannibalisation.
 
-- **`/societe-terrazzo` → redirection 301 vers `/entreprise-terrazzo`** (voir `next.config.ts`).
+- **`/societe-terrazzo` → redirection 301 vers `/entreprise-terrazzo`** (voir `next.config.ts`). Ce choix reste valable pour la requête générique "société terrazzo" (sans ville) : elle et "entreprise terrazzo" ciblent la même intention.
 - **`/artisan-terrazzo-75` → redirection 301 vers `/artisan-terrazzo-paris`**.
 - Chacune des 7 pages locales restantes (`/artisan-terrazzo-hauts-de-seine`, etc.) contient un contenu réellement différencié (contexte géographique, typologie de bâti, villes desservies) plutôt qu'un gabarit recopié avec le nom du département changé.
+
+**Exception : `/societe-terrazzo-paris`.** Créée à la demande explicite du client pour cibler frontalement la requête "société terrazzo paris" (un concurrent — Mineral Art Concept — se positionne sur une page dédiée à cet exact intitulé). Elle chevauche par construction `/artisan-terrazzo-paris` (ville) et `/entreprise-terrazzo` (registre "société"/pro) ; le risque de cannibalisation est assumé mais limité par une différenciation réelle :
+- Angle éditorial distinct : la structure et le process de l'entreprise (devis, interlocuteur unique, suivi de chantier) plutôt que le patrimoine haussmannien (page Paris) ou l'exploitation commerciale (page B2B).
+- Public visé plus large explicitement mentionné (particuliers ET professionnels), alors que `/entreprise-terrazzo` s'adresse aux seuls professionnels.
+- FAQ, visuels et méta-description propres, sans reprise de blocs des deux autres pages.
+- Maillage interne croisé entre les trois pages plutôt que contenu dupliqué, pour que Google comprenne qu'il s'agit de pages complémentaires et non de clones.
 
 ## 6. Stratégie de maillage interne
 
@@ -67,6 +74,9 @@ Principe : chaque page pilier pointe vers ses pages secondaires, chaque page sec
 
 Pages locales (8x)
  → /realisations, /demande-devis, section "zones d'intervention" de la home
+
+/societe-terrazzo-paris ↔ /artisan-terrazzo-paris ↔ /entreprise-terrazzo
+ (maillage croisé entre les trois pages, voir section 5)
 ```
 
 Chaque page de service se termine par un bloc "Voir aussi" (`RelatedLinks`) et un CTA vers `/demande-devis`. Le composant `Breadcrumbs` génère automatiquement le `BreadcrumbList` structuré et le fil d'ariane visuel sur toutes les pages profondes.

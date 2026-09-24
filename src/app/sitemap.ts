@@ -12,6 +12,7 @@ const staticRoutes = [
   { path: "/artisan-terrazzo", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/artisan-terrazzo-paris", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/entreprise-terrazzo", priority: 0.8, changeFrequency: "monthly" as const },
+  { path: "/societe-terrazzo-paris", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/sol-terrazzo", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/renovation-terrazzo", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/renovation-granito", priority: 0.8, changeFrequency: "monthly" as const },

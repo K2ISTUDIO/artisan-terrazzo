@@ -128,6 +128,18 @@ export default function ArtisanTerrazzoParisPage() {
         </div>
       </section>
 
+      <section className="pb-14 md:pb-20">
+        <div className="container-page">
+          <p className="text-sm text-ink/60">
+            Vous représentez une entreprise ou une copropriété ?{" "}
+            <Link href="/societe-terrazzo-paris" className="text-brass-dark underline underline-offset-4 hover:text-brass">
+              Découvrez notre société de terrazzo à Paris
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
       <FaqAccordion items={globalFaq.slice(0, 6)} />
       <CTASection
         title="Un projet de terrazzo à Paris ?"

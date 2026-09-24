@@ -52,6 +52,7 @@ export default function EntrepriseTerrazzoPage() {
       ]}
       faq={globalFaq.filter((f) => ["Combien de temps faut-il pour réaliser un sol terrazzo ?", "Comment entretenir le terrazzo ?"].includes(f.question))}
       related={[
+        { label: "Société de terrazzo à Paris", href: "/societe-terrazzo-paris" },
         { label: "Architectes & professionnels", href: "/architectes" },
         { label: "Sol terrazzo", href: "/sol-terrazzo" },
         { label: "Prix du terrazzo au m²", href: "/prix-terrazzo" },
