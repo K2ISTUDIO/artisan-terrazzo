@@ -1,20 +1,47 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { siteConfig } from "@/lib/site-config";
 
 /**
  * Lead intake endpoint.
  *
- * This currently validates the payload and logs it server-side so the form
- * is fully functional end-to-end in development. Before launch, wire this
- * to a real destination — pick ONE (or several) of:
- *   - Transactional email (Resend, Postmark, SES) to notify the team
- *   - A CRM (HubSpot, Pipedrive) via its API
- *   - A spreadsheet/DB for simple tracking
- * Uploaded files (photos/plans) arrive in the FormData but are not
- * persisted anywhere yet — add a storage step (e.g. Vercel Blob, S3) before
- * relying on them in production.
+ * Validates the payload, notifies the team by email via Resend (including
+ * any uploaded photos/plans as attachments), and always logs the payload
+ * server-side as a fallback record in case the email fails to send.
  */
 
 const REQUIRED_FIELDS = ["projectType", "firstName", "lastName", "email", "phone", "city", "postalCode"] as const;
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+const FIELD_LABELS: [label: string, key: string][] = [
+  ["Type de projet", "projectType"],
+  ["Précision", "projectTypeDetail"],
+  ["Nature du projet", "projectNature"],
+  ["Ville", "city"],
+  ["Code postal", "postalCode"],
+  ["Superficie", "surface"],
+  ["Échéance", "timing"],
+  ["Prénom", "firstName"],
+  ["Nom", "lastName"],
+  ["E-mail", "email"],
+  ["Téléphone", "phone"],
+  ["Message", "message"],
+];
+
+const PROJECT_NATURE_LABELS: Record<string, string> = {
+  neuf: "Projet neuf",
+  renovation: "Rénovation",
+};
+
+function formatEmailBody(payload: Record<string, string>): string {
+  return FIELD_LABELS.filter(([, key]) => payload[key]?.trim())
+    .map(([label, key]) => {
+      const value = key === "projectNature" ? (PROJECT_NATURE_LABELS[payload[key]] ?? payload[key]) : payload[key];
+      return `${label} : ${value}`;
+    })
+    .join("\n");
+}
 
 export async function POST(request: Request) {
   try {
@@ -43,6 +70,39 @@ export async function POST(request: Request) {
       ...payload,
       attachments: files.map((f) => ({ name: f.name, size: f.size, type: f.type })),
     });
+
+    if (!process.env.RESEND_API_KEY) {
+      console.warn("[lead] RESEND_API_KEY absent — e-mail de notification non envoyé");
+    } else {
+      try {
+        const attachments = await Promise.all(
+          files.map(async (file) => ({
+            filename: file.name,
+            content: Buffer.from(await file.arrayBuffer()),
+          })),
+        );
+
+        const subject =
+          payload.projectType === "Contact général"
+            ? `Message de contact — ${payload.firstName} ${payload.lastName}`
+            : `Nouvelle demande de devis — ${payload.firstName} ${payload.lastName}`;
+
+        const { error } = await resend.emails.send({
+          from: "L'Artisan Terrazzo <onboarding@resend.dev>",
+          to: siteConfig.email,
+          replyTo: payload.email,
+          subject,
+          text: formatEmailBody(payload),
+          attachments: attachments.length > 0 ? attachments : undefined,
+        });
+
+        if (error) {
+          console.error("[lead] Échec de l'envoi de l'e-mail", error);
+        }
+      } catch (emailError) {
+        console.error("[lead] Échec de l'envoi de l'e-mail", emailError);
+      }
+    }
 
     return NextResponse.json({ ok: true });
   } catch (error) {
