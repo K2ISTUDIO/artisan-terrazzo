@@ -22,7 +22,7 @@ const TIMING_OPTIONS = [
 ];
 
 type FormState = {
-  projectType: string;
+  projectTypes: string[];
   projectTypeDetail: string;
   projectNature: "neuf" | "renovation" | "";
   city: string;
@@ -39,7 +39,7 @@ type FormState = {
 };
 
 const initialState: FormState = {
-  projectType: "",
+  projectTypes: [],
   projectTypeDetail: "",
   projectNature: "",
   city: "",
@@ -76,11 +76,25 @@ export function DevisForm() {
     setErrors((prev) => ({ ...prev, [key]: "" }));
   }
 
+  function toggleProjectType(label: string) {
+    if (!started) {
+      setStarted(true);
+      trackEvent("form_start");
+    }
+    setForm((prev) => ({
+      ...prev,
+      projectTypes: prev.projectTypes.includes(label)
+        ? prev.projectTypes.filter((t) => t !== label)
+        : [...prev.projectTypes, label],
+    }));
+    setErrors((prev) => ({ ...prev, projectTypes: "" }));
+  }
+
   function validateStep(current: number): boolean {
     const next: Record<string, string> = {};
     if (current === 0) {
-      if (!form.projectType) next.projectType = "Sélectionnez un type de projet.";
-      if (form.projectType === "Autre" && !form.projectTypeDetail.trim()) {
+      if (form.projectTypes.length === 0) next.projectTypes = "Sélectionnez au moins un type de projet.";
+      if (form.projectTypes.includes("Autre") && !form.projectTypeDetail.trim()) {
         next.projectTypeDetail = "Précisez votre projet.";
       }
       if (!form.projectNature) next.projectNature = "Précisez s'il s'agit d'un projet neuf ou d'une rénovation.";
@@ -121,7 +135,11 @@ export function DevisForm() {
 
     try {
       const data = new FormData();
-      Object.entries(form).forEach(([key, value]) => data.append(key, String(value)));
+      Object.entries(form).forEach(([key, value]) => {
+        if (key === "projectTypes") return;
+        data.append(key, String(value));
+      });
+      data.append("projectType", form.projectTypes.join(", "));
       files.forEach((file) => data.append("attachments", file));
 
       const response = await fetch("/api/lead", { method: "POST", body: data });
@@ -133,9 +151,10 @@ export function DevisForm() {
         return;
       }
 
+      const projectTypeLabel = form.projectTypes.join(", ");
       trackEvent("form_submit");
-      trackEvent("generate_lead", { project_type: form.projectType });
-      trackEvent("quote_request", { project_type: form.projectType, city: form.city });
+      trackEvent("generate_lead", { project_type: projectTypeLabel });
+      trackEvent("quote_request", { project_type: projectTypeLabel, city: form.city });
       router.push("/merci-demande-devis");
     } catch {
       setSubmitError("Une erreur est survenue. Merci de réessayer dans un instant.");
@@ -176,27 +195,33 @@ export function DevisForm() {
         <fieldset className="space-y-6">
           <legend className="font-display text-2xl text-ink mb-1">Quel est votre projet ?</legend>
           <div>
-            <span className="block text-sm font-medium text-ink mb-3">Type de projet</span>
+            <span className="block text-sm font-medium text-ink mb-3">
+              Type de projet <span className="font-normal text-ink/50">(plusieurs choix possibles)</span>
+            </span>
             <div className="grid grid-cols-3 gap-2.5">
-              {PROJECT_TYPES.map(({ label, icon: Icon }) => (
-                <button
-                  type="button"
-                  key={label}
-                  onClick={() => update("projectType", label)}
-                  className={`flex flex-col items-center justify-center gap-2 rounded-xl border px-3 py-4 text-sm transition-colors duration-200 cursor-pointer focus-ring ${
-                    form.projectType === label
-                      ? "border-brass bg-brass/10 text-ink"
-                      : "border-line bg-white text-ink/70 hover:border-brass/40"
-                  }`}
-                >
-                  <Icon className={`w-6 h-6 ${form.projectType === label ? "text-brass-dark" : "text-mineral"}`} />
-                  {label}
-                </button>
-              ))}
+              {PROJECT_TYPES.map(({ label, icon: Icon }) => {
+                const selected = form.projectTypes.includes(label);
+                return (
+                  <button
+                    type="button"
+                    key={label}
+                    aria-pressed={selected}
+                    onClick={() => toggleProjectType(label)}
+                    className={`flex flex-col items-center justify-center gap-2 rounded-xl border px-3 py-4 text-sm transition-colors duration-200 cursor-pointer focus-ring ${
+                      selected
+                        ? "border-brass bg-brass/10 text-ink"
+                        : "border-line bg-white text-ink/70 hover:border-brass/40"
+                    }`}
+                  >
+                    <Icon className={`w-6 h-6 ${selected ? "text-brass-dark" : "text-mineral"}`} />
+                    {label}
+                  </button>
+                );
+              })}
             </div>
-            {errors.projectType && <p className="mt-2 text-xs text-terracotta">{errors.projectType}</p>}
+            {errors.projectTypes && <p className="mt-2 text-xs text-terracotta">{errors.projectTypes}</p>}
 
-            {form.projectType === "Autre" && (
+            {form.projectTypes.includes("Autre") && (
               <div className="mt-4">
                 <input
                   type="text"
